@@ -7,11 +7,11 @@ variable "region" {
 variable "name" {
   description = "Prefix for every resource this module creates."
   type        = string
-  default     = "mirrord-ecs-quickstart"
+  default     = "mirrord-ecs-sample"
 }
 
 variable "mirrord_api_key" {
-  description = "MetalBear Cloud mode: the MetalBear API key for serverless workloads. It begins with metalbear_key_."
+  description = "MetalBear Cloud mode: the serverless agent API key of your MetalBear organization. It begins with metalbear_key_."
   type        = string
   sensitive   = true
   default     = null
@@ -67,5 +67,5 @@ variable "mirrord_bootstrap_image" {
 variable "app_image" {
   description = "Image of the orders service. Must be glibc-based (not Alpine)."
   type        = string
-  default     = "ghcr.io/metalbear-co/mirrord-ecs-quickstart:latest"
+  default     = "ghcr.io/metalbear-co/mirrord-ecs-sample:latest"
 }

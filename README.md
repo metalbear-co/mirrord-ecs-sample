@@ -1,4 +1,4 @@
-# mirrord ECS quickstart
+# mirrord ECS sample app
 
 Run a service on your laptop as if it were running in Amazon ECS. No image build, no push, no redeploy.
 
@@ -7,7 +7,7 @@ This repo deploys a small orders API to ECS on Fargate, next to a private Postgr
 - **Real requests reach your laptop:** requests to the public load balancer that carry your session header reach the process on your laptop. All other requests still go to the ECS task.
 - **Your laptop reads the real database:** your local process reads and writes the orders in the RDS database, which has no public endpoint. mirrord sends the database connection through the ECS task, inside the VPC. It also gives the local process the task's environment variables, so the process gets the database credentials from the task.
 
-![The client sends requests to the load balancer and the ECS task. The mirrord agent in the task sends requests with your header through the MetalBear sessions-manager to the app on your machine. The task connects to the private RDS database for both apps.](assets/ecs-quickstart.svg)
+![The client sends requests to the load balancer and the ECS task. The mirrord agent in the task sends requests with your header through the MetalBear sessions-manager to the app on your machine. The task connects to the private RDS database for both apps.](assets/architecture.svg)
 
 > mirrord for ECS is experimental, and may change without notice.
 
