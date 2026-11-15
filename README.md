@@ -38,7 +38,7 @@ terraform init
 terraform apply
 ```
 
-It takes about 6 minutes, mostly for RDS. When it finishes, keep the URL:
+It takes several minutes, mostly for the RDS database. When it finishes, keep the URL:
 
 ```bash
 export URL=$(terraform output -raw url)
