@@ -80,3 +80,11 @@ def create_order(order: NewOrder):
             "INSERT INTO orders (item) VALUES (%s) RETURNING id", (order.item,)
         ).fetchone()
     return {"id": row[0], "item": order.item, "version": VERSION}
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    # Port 8080 is the port that the app listens on in the ECS task. mirrord sends the
+    # stolen requests to the same port on your machine.
+    uvicorn.run(app, port=8080)

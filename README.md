@@ -70,7 +70,7 @@ Run it with mirrord, from the repo root:
 
 ```bash
 cd ..
-mirrord exec -f mirrord.json -- uvicorn main:app --app-dir app --port 8080
+mirrord exec -f mirrord.json -- python app/main.py
 ```
 
 ## 4. See it work
