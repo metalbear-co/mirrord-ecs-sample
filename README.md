@@ -70,7 +70,7 @@ Run it with mirrord, from the repo root:
 
 ```bash
 cd ..
-mirrord up --key quickstart
+mirrord up --key $USER
 ```
 
 `mirrord up` reads `mirrord-up.yaml` and starts the app with `python app/main.py`.
@@ -83,13 +83,13 @@ mirrord up --key quickstart
 export URL=$(terraform output -raw url)
 ```
 
-mirrord sends only some requests to your laptop: the HTTP requests whose `baggage` header contains `mirrord-session=quickstart`. This is your session header, and `quickstart` is the session key that you gave to `--key`. Each developer uses a different session key, so each one gets only their own requests. For more, see [How it works](#how-it-works).
+mirrord sends only some requests to your laptop: the HTTP requests whose `baggage` header contains `mirrord-session=<your username>`. This is your session header. Your username is the session key, which you gave to `--key` as `$USER`. Each developer uses a different session key, so each one gets only their own requests. For more, see [How it works](#how-it-works).
 
 Send a request with your session header:
 
 ```bash
-curl -H "baggage: mirrord-session=quickstart" $URL/
-curl -H "baggage: mirrord-session=quickstart" $URL/orders
+curl -H "baggage: mirrord-session=$USER" $URL/
+curl -H "baggage: mirrord-session=$USER" $URL/orders
 ```
 
 Both responses show `"version": "v2"`: your local code served them. The `/orders` response also lists the rows from the private RDS database, which your laptop has no route to.
@@ -105,7 +105,7 @@ It shows `"version": "v1"`. The ECS task still serves everyone else, so other de
 Add an order from your local code, and see the deployed service read it from the same database:
 
 ```bash
-curl -X POST -H "baggage: mirrord-session=quickstart" \
+curl -X POST -H "baggage: mirrord-session=$USER" \
   -H "content-type: application/json" -d '{"item": "bagel"}' $URL/orders
 curl $URL/orders
 ```
@@ -119,7 +119,7 @@ Change the code again, restart `mirrord up`, and send the request again. There i
 | Setting | Value | Set on the task by |
 | --- | --- | --- |
 | `services.orders.target.path` | `serverless/orders` | `MIRRORD_REMOTE_SERVICE` |
-| `services.orders.target.namespace` | `quickstart` | `MIRRORD_REMOTE_ENVIRONMENT` |
+| `services.orders.target.namespace` | `staging` | `MIRRORD_REMOTE_ENVIRONMENT` |
 
 `operator: false` under `common` makes mirrord connect through MetalBear Cloud. Without it, mirrord looks for an Operator in your current kubeconfig context, and uses it if it finds one.
 

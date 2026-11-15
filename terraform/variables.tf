@@ -55,7 +55,7 @@ variable "mirrord_service" {
 variable "mirrord_environment" {
   description = "Environment name developers set as target.namespace in mirrord-up.yaml."
   type        = string
-  default     = "quickstart"
+  default     = "staging"
 }
 
 variable "mirrord_bootstrap_image" {

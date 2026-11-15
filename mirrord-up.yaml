@@ -4,6 +4,6 @@ services:
   orders:
     target:
       path: serverless/orders
-      namespace: quickstart
+      namespace: staging
     run:
       command: ["python", "app/main.py"]
