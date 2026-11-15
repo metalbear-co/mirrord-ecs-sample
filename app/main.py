@@ -15,8 +15,9 @@ SEED_ITEMS = ["coffee beans", "oat milk", "croissant"]
 
 
 def connect() -> psycopg.Connection:
-    # DB_HOST resolves only inside the VPC. Under mirrord, the local process gets these
-    # variables from the ECS task and its connection leaves from the task.
+    # DB_HOST resolves to a private IP address, which only the VPC can connect to. Under
+    # mirrord, the local process gets these variables from the ECS task, and its connection
+    # leaves from the task.
     return psycopg.connect(
         host=os.environ["DB_HOST"],
         port=int(os.environ.get("DB_PORT", "5432")),

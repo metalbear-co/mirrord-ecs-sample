@@ -12,7 +12,7 @@ output "mirrord_target" {
 }
 
 output "db_host" {
-  description = "Private RDS endpoint. It does not resolve or connect from outside the VPC."
+  description = "Private RDS endpoint. It resolves to a private IP address, which only the VPC can connect to."
   value       = aws_db_instance.this.address
 }
 
