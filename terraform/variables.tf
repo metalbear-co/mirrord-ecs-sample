@@ -47,13 +47,13 @@ variable "eks_workload_group" {
 }
 
 variable "mirrord_service" {
-  description = "Service name developers target as serverless/<name> in mirrord.json."
+  description = "Service name developers target as serverless/<name> in mirrord-up.yaml."
   type        = string
   default     = "orders"
 }
 
 variable "mirrord_environment" {
-  description = "Environment name developers set as target.namespace in mirrord.json."
+  description = "Environment name developers set as target.namespace in mirrord-up.yaml."
   type        = string
   default     = "quickstart"
 }

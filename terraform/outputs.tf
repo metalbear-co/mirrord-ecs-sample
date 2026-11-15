@@ -4,7 +4,7 @@ output "url" {
 }
 
 output "mirrord_target" {
-  description = "The target.path and target.namespace for mirrord.json."
+  description = "The target.path and target.namespace for mirrord-up.yaml."
   value = {
     path      = "serverless/${var.mirrord_service}"
     namespace = var.mirrord_environment

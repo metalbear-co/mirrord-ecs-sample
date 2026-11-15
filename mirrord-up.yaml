@@ -1,0 +1,9 @@
+common:
+  operator: false
+services:
+  orders:
+    target:
+      path: serverless/orders
+      namespace: quickstart
+    run:
+      command: ["python", "app/main.py"]
