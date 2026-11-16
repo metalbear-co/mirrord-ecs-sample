@@ -1,5 +1,5 @@
 # MetalBear Cloud mode:
-mirrord_api_key = "metalbear_key_..."
+mirrord_api_key = "<API_KEY>"
 
 # Or operator-hosted mode, with the mirrord Operator on an EKS cluster:
 # eks_cluster_name = "my-eks-cluster"

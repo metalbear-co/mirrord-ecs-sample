@@ -18,7 +18,7 @@ variable "mirrord_api_key" {
 
   validation {
     condition     = var.mirrord_api_key == null || startswith(coalesce(var.mirrord_api_key, "-"), "metalbear_key_")
-    error_message = "The MetalBear API key begins with metalbear_key_."
+    error_message = "Set mirrord_api_key in terraform.tfvars to your MetalBear API key. The key begins with metalbear_key_."
   }
 }
 

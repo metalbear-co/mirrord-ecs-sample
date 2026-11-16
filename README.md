@@ -59,6 +59,8 @@ python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+In fish, run `. .venv/bin/activate.fish` instead of `. .venv/bin/activate`.
+
 Open `app/main.py` and change the code, for example:
 
 ```python

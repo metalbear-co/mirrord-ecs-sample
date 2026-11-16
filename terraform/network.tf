@@ -6,7 +6,7 @@ data "aws_availability_zones" "available" {
 # outbound HTTPS, which they need to pull images and to reach MetalBear.
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "~> 5.16"
+  version = "~> 6.7"
 
   name = var.name
   cidr = "10.42.0.0/16"

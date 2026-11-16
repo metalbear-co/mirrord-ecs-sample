@@ -6,6 +6,5 @@ __pycache__/
 *.tfstate.*
 *.tfvars
 !terraform.tfvars.example
-.terraform.lock.hcl
 .mirrord/
 *.tfplan
