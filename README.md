@@ -54,10 +54,12 @@ Sign in once, and install the app's dependencies:
 ```bash
 mirrord login
 
-cd ../app
+cd ..
 python3 -m venv .venv && . .venv/bin/activate
-pip install -r requirements.txt
+pip install -r app/requirements.txt
 ```
+
+Create the virtual environment in the repo root, not in `app`: the app reloads when a file in `app` changes, and it would also watch the files in the environment.
 
 In fish, run `. .venv/bin/activate.fish` instead of `. .venv/bin/activate`.
 
@@ -68,14 +70,13 @@ GREETING = "Hello from my laptop"
 VERSION = "v2"
 ```
 
-Run it with mirrord, from the repo root:
+Run it with mirrord, from the repo root, with the virtual environment active:
 
 ```bash
-cd ..
 mirrord up --key $USER
 ```
 
-`mirrord up` reads `mirrord-up.yaml` and starts the app with `python app/main.py`.
+`mirrord up` reads `mirrord-up.yaml` and starts the app with uvicorn's `--reload`, on port 8080 as in the ECS task. The app restarts on its own whenever you save a file in `app`, and `mirrord up` keeps running.
 
 ## 4. See it work
 
@@ -112,7 +113,7 @@ curl -X POST -H "baggage: mirrord-session=$USER" \
 curl $URL/orders
 ```
 
-Change the code again, restart `mirrord up`, and send the request again. There is no image build and no deploy between changes.
+Change the code again, save it, and send the request again. The app reloads within a second or so, and you don't need to restart `mirrord up`. There is no image build and no deploy between changes.
 
 ## How it works
 

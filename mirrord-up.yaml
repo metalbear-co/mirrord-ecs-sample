@@ -6,4 +6,5 @@ services:
       path: serverless/orders
       namespace: staging
     run:
-      command: ["python", "app/main.py"]
+      # --reload restarts the app when you save a file in app/, so mirrord up keeps running between changes.
+      command: ["python", "-m", "uvicorn", "app.main:app", "--port", "8080", "--reload", "--reload-dir", "app"]
